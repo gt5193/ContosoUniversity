@@ -16,6 +16,7 @@ namespace ContosoUniversity
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            //comment
         }
 
         public IConfiguration Configuration { get; }
