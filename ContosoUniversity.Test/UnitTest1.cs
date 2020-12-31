@@ -1,12 +1,11 @@
-﻿using Xunit;
+using Xunit;
 
 namespace ContosoUniversity.Test
 {
-    
-    public class MyTests
+    public class Tests
     {
         [Fact]
-        public void DoesNothing()
+        public void Test1()
         {
             Assert.True(true);
         }
