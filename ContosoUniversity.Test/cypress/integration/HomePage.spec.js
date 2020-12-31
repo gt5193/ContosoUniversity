@@ -1,4 +1,4 @@
-﻿context('Connectors', () => {
+﻿context('HomePage', () => {
     beforeEach(() => {
         cy.visit('https://example.cypress.io/commands/connectors')
     })
