@@ -3,7 +3,7 @@ pipeline {
     stages { 
         stage ('Clone') {
             steps() {
-                bat "git clone http://gt5193:Gt519320!1a1a@github.com/gt5193/ContosoUniversity.git"
+                bat "git clone https://github.com/gt5193/ContosoUniversity.git"
             }
         }
         stage ('Build') { 
