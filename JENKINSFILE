@@ -3,7 +3,7 @@ pipeline {
     stages { 
         stage ('Clone') {
             steps() {
-                sh "git clone https://github.com/gt5193/ContosoUniversity.git"
+                echo "Cloning something cool!"
             }
         }
         stage ('Build') { 
