@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    stages { 
+        stage ('Clone') {
+            steps() {
+                bat "git clone http://gt5193:Gt519320!1a1a@github.com/gt5193/ContosoUniversity.git"
+            }
+        }
+        stage ('Build') { 
+            steps() {
+                echo "Building something cool!"
+            }
+        }
+        stage ('Test') { 
+            steps() {
+                echo "Testing something cool!"
+            }
+        }
+        stage ('QA') { 
+            steps() {
+                echo "QAing something cool!"
+            }
+        }
+        stage ('Deploy') { 
+            steps() {
+                echo "Deplying something cool!"
+            }
+        }
+        stage ('Monitor') { 
+            steps() {
+                echo "Monitoring something cool!"
+            }
+        }
+    }
+}
