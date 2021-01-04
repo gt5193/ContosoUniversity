@@ -3,7 +3,7 @@ pipeline {
     stages { 
         stage ('Build') { 
             steps() {
-                sh "dotnet build -configuration Release"
+                bat "dotnet build -configuration Release"
             }
         }
         stage ('Test') { 
