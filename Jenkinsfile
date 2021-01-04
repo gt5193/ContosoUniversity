@@ -13,8 +13,9 @@ pipeline {
         }
         stage ('Integration Test') { 
             steps() {
-                dir("/ContosoUniversity.Test")
-                bat "npx cypress run"
+                dir("/ContosoUniversity.Test") {
+                    bat "npx cypress run"
+                }
             }
         }
         stage ('Deploy') { 
