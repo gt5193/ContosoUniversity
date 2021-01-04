@@ -8,7 +8,7 @@ pipeline {
         }
         stage ('Test') { 
             steps() {
-                bat "dotnet test \ContosoUniversity\ContosoUniversity.Test.csproj"
+                bat "dotnet test ContosoUniversity\ContosoUniversity.Test.csproj"
             }
         }
         stage ('QA') { 
