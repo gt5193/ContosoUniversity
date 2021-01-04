@@ -13,7 +13,7 @@ pipeline {
         }
         stage ('Integration Test') { 
             steps() {
-                dir("/ContosoUniversity.Test") {
+                dir("${workspace}/ContosoUniversity.Test") {
                     bat "npx cypress run"
                 }
             }
