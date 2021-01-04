@@ -3,7 +3,7 @@ pipeline {
     stages { 
         stage ('Build') { 
             steps() {
-                echo "Building something cool!"
+                sh "dotnet build -configuration Release"
             }
         }
         stage ('Test') { 
