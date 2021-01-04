@@ -8,7 +8,7 @@ pipeline {
         }
         stage ('Test') { 
             steps() {
-                echo "Testing something cool!"
+                bat "dotnet test /ContosoUniversity/ContosoUniversity.Test.csproj"
             }
         }
         stage ('QA') { 
