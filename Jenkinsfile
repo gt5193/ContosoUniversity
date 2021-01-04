@@ -14,6 +14,7 @@ pipeline {
         stage ('Integration Test') { 
             steps() {
                 dir("${workspace}/ContosoUniversity.Test") {
+                    bat "npm install cypress"
                     bat "npx cypress run"
                 }
             }
