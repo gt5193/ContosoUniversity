@@ -8,12 +8,12 @@ pipeline {
         }
         stage ('Unit Test') { 
             steps() {
-                bat "cd ContosoUniversity.Test"
                 bat "dotnet test"
             }
         }
         stage ('Integration Test') { 
             steps() {
+                bat "cd ContosoUniversity.Test"
                 bat "npx cypress run"
             }
         }
