@@ -6,24 +6,20 @@ pipeline {
                 bat "dotnet build --configuration Release"
             }
         }
-        stage ('Test') { 
+        stage ('Unit Test') { 
             steps() {
+                bat "cd ContosoUniversity.Test"
                 bat "dotnet test"
             }
         }
-        stage ('QA') { 
+        stage ('Integration Test') { 
             steps() {
-                echo "QAing something cool!"
+                bat "npx cypress run"
             }
         }
         stage ('Deploy') { 
             steps() {
                 echo "Deplying something cool!"
-            }
-        }
-        stage ('Monitor') { 
-            steps() {
-                echo "Monitoring something cool!"
             }
         }
     }
