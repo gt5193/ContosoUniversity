@@ -1,16 +1,32 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<UserSecretsId>ede86119-5d49-4b64-bb2d-fd2307e78c61</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>5c8b60f4-2092-49e6-9c05-fbf5c88726bb</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-  </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+		<PackageReference Include="NSwag.AspNetCore" Version="13.9.4" />
+		<PackageReference Include="NSwag.MSBuild" Version="13.9.4">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+	<Target Name="SwaggerJsonGeneration" AfterTargets="Build" Condition="$(BUILD_NUMBER)==''">
+		<Exec EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Core31) aspnetcore2openapi /assembly:$(TargetDir)$(ProjectName).dll /output:swagger.json" />
+	</Target>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.1" NoWarn="NU1605" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.1" NoWarn="NU1605" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
-  </ItemGroup>
-
+	<Target Name="ClientGeneration" AfterTargets="Build">
+		<Exec Command="dotnet new classlib -o $(SolutionDir)\$(ProjectName).Client -n $(ProjectName).Client -f netcoreapp3.1 --force" />
+		<Exec Command="dotnet add $(SolutionDir)\$(ProjectName).Client\$(ProjectName).Client.csproj package Newtonsoft.Json" />
+		<Exec Command="$(NSwagExe_Core31) run nswag.json" />
+	</Target>
+	<Target Name="ClientBuildRelease" AfterTargets="ClientGeneration">
+		<Exec Command="dotnet build $(SolutionDir)$(ProjectName).Client\$(ProjectName).Client.csproj --configuration=$(Configuration) -p:Version=1.0 -p:GeneratePackageOnBuild=true" />
+	</Target>
+	<Target Name="NugetPackage" AfterTargets="ClientGeneration">
+		<Exec Command="dotnet nuget push $(SolutionDir)$(ProjectName).Client\bin\Debug\*.nupkg -s C:\nuget" />
+	</Target>
 </Project>
