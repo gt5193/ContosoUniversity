@@ -19,7 +19,7 @@
 	</Target>
 
 	<Target Name="ClientGeneration" AfterTargets="Build">
-		<Exec Command="dotnet new classlib -o $(SolutionDir)\$(ProjectName).Client -n $(ProjectName).Client -f netcoreapp3.1 --force" />
+		<Exec Command="dotnet new classlib -o $(SolutionDir)$(ProjectName).Client -n $(ProjectName).Client -f netcoreapp3.1 --force" />
 		<Exec Command="dotnet add $(SolutionDir)\$(ProjectName).Client\$(ProjectName).Client.csproj package Newtonsoft.Json" />
 		<Exec Command="$(NSwagExe_Core31) run nswag.json" />
 	</Target>
