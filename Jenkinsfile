@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        NUGET_KEY = credentials('')
+        NUGET_KEY = credentials('NugetFabricam')
     }
     stages { 
         stage ('Build') { 
