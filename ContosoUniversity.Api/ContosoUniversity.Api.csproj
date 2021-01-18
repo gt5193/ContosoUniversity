@@ -14,19 +14,5 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
-	<!--<Target Name="SwaggerJsonGeneration" AfterTargets="Build" Condition="$(BUILD_NUMBER)==''">
-		<Exec EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Core31) aspnetcore2openapi /assembly:$(TargetDir)$(ProjectName).dll /output:swagger.json" />
-	</Target>
-
-	<Target Name="ClientGeneration" AfterTargets="Build">
-		<Exec Command="dotnet new classlib -o $(SolutionDir)$(ProjectName).Client -n $(ProjectName).Client -f netcoreapp3.1 --force" />
-		<Exec Command="dotnet add $(SolutionDir)\$(ProjectName).Client\$(ProjectName).Client.csproj package Newtonsoft.Json" />
-		<Exec Command="$(NSwagExe_Core31) run nswag.json" />
-	</Target>
-	<Target Name="ClientBuildRelease" AfterTargets="ClientGeneration">
-		<Exec Command="dotnet build $(SolutionDir)$(ProjectName).Client\$(ProjectName).Client.csproj --configuration=$(Configuration) -p:Version=1.0 -p:GeneratePackageOnBuild=true" />
-	</Target>
-	<Target Name="NugetPackage" AfterTargets="ClientGeneration">
-		<Exec Command="dotnet nuget push $(SolutionDir)$(ProjectName).Client\bin\Debug\*.nupkg -s C:\nuget" />
-	</Target>-->
+	
 </Project>
