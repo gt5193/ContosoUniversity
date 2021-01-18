@@ -14,7 +14,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
-	<Target Name="SwaggerJsonGeneration" AfterTargets="Build" Condition="$(BUILD_NUMBER)==''">
+	<!--<Target Name="SwaggerJsonGeneration" AfterTargets="Build" Condition="$(BUILD_NUMBER)==''">
 		<Exec EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Core31) aspnetcore2openapi /assembly:$(TargetDir)$(ProjectName).dll /output:swagger.json" />
 	</Target>
 
@@ -28,5 +28,5 @@
 	</Target>
 	<Target Name="NugetPackage" AfterTargets="ClientGeneration">
 		<Exec Command="dotnet nuget push $(SolutionDir)$(ProjectName).Client\bin\Debug\*.nupkg -s C:\nuget" />
-	</Target>
+	</Target>-->
 </Project>
