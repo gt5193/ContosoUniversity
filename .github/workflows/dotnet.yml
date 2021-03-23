@@ -1,4 +1,4 @@
-name: .NET
+name: Contoso University
 
 on:
   workflow_dispatch:
